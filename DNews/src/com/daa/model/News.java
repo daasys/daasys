@@ -1,5 +1,9 @@
 package com.daa.model;
 
+/**
+ * DaaSys * @author DaaSys
+ *
+ */
 public class News {
 	private String news;
 	private String description;

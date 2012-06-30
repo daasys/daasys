@@ -32,12 +32,13 @@ public final class R {
         public static final int tulips=0x7f020008;
     }
     public static final class id {
-        public static final int ImageViewNews=0x7f080004;
-        public static final int LinearLayoutNews=0x7f080003;
-        public static final int TextViewName=0x7f080005;
-        public static final int TextViewNews=0x7f080000;
-        public static final int horizontalScrollView1=0x7f080001;
-        public static final int horizontalScrollView2=0x7f080002;
+        public static final int ImageViewNews=0x7f080001;
+        public static final int LinearLayoutNews=0x7f080005;
+        public static final int TextViewName=0x7f080006;
+        public static final int TextViewNews=0x7f080002;
+        public static final int TextViewTitle=0x7f080000;
+        public static final int horizontalScrollView1=0x7f080003;
+        public static final int horizontalScrollView2=0x7f080004;
     }
     public static final class layout {
         public static final int detail_news=0x7f030000;
