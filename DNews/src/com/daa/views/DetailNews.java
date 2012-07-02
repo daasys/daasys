@@ -8,11 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daa.R;
+import com.daa.model.CategoryNews;
 import com.daa.model.News;
 import com.daa.util.DataManager;
 import com.daa.util.Utility;
 
-public class DetailNews extends Activity {
+public class DetailNews extends Activity  {
 	private TextView txtViewTitle;
 	private TextView txtViewNews;
 	private ImageView imgViewNews;
@@ -44,14 +45,27 @@ public class DetailNews extends Activity {
 		
 		String description = news.getDescription();
 		String title = news.getTitle();
+		String detailLink = news.getLink();
+		fetchImage(detailLink);
 		// TODO This is hard coded image resource id.
-		Drawable drawable = getResources().getDrawable(Integer.parseInt(DataManager.selectedNews.getUrl()));
+		//Drawable drawable = getResources().getDrawable(Integer.parseInt(DataManager.selectedNews.getUrl()));
 		// Set to widgets.
 		txtViewNews.setText(description);
 		txtViewTitle.setText(title);
 		
-		Drawable resizeDrawable = Utility.getThumbnail(drawable, 128, 128);
-		imgViewNews.setImageDrawable(resizeDrawable);
+		//Drawable resizeDrawable = Utility.getThumbnail(drawable, 128, 128);
+		imgViewNews.setImageBitmap(DataManager.bitMap);
+	}
+
+	private void fetchImage(String detailLink) {
+		 try {
+			CategoryNews cateNews = new CategoryNews();
+			cateNews.setContext(this);
+			cateNews.fetchImage(detailLink);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 	private ImageGetter imgGetter = new ImageGetter() {
@@ -65,6 +79,10 @@ public class DetailNews extends Activity {
 			return drawable;
 		}
 	};
+	
+	private void fetchImageFromWebService(String url) {
+		
+	}
 	
 	/*
 	 * final String testContent = "<html><body>"

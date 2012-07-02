@@ -98,12 +98,16 @@ class RequestTask extends AsyncTask<ServiceRequest, String, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		Element response = ServiceParser.getDocumentElement(result); 
+		
 		if(response == null && serviceRequest.getDelegate() != null) {
 			serviceRequest.getDelegate().onFailure(serviceRequest.tag);
 		} else if(serviceRequest.getDelegate() != null) {
 			serviceRequest.getDelegate().onSuccess(response, serviceRequest.tag);
 		}			
 	}
+
+	
+
 
 	private void addRequestHeaders(HttpPost httpPost, Hashtable<String,String> httpHeaders) {
 		// add the headers

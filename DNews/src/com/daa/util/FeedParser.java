@@ -55,6 +55,8 @@ public class FeedParser {
 					news.setUrl(property.getFirstChild().getNodeValue());
 				} else if(propertyName.equalsIgnoreCase("DESCRIPTION")) {
 					news.setDescription(property.getFirstChild().getNodeValue());
+				} else if(propertyName.equalsIgnoreCase("guid")) {
+					news.setLink(property.getFirstChild().getNodeValue());
 				}  
 			}
 			return news;
@@ -62,4 +64,8 @@ public class FeedParser {
 			return null;
 		}
 	}
+	public void  getImage() {
+		
+	}
+	
 }
