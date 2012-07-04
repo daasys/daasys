@@ -65,6 +65,7 @@ public class FeedParser {
 		}
 	}
 	public void  getImage() {
+		Thread thread = new Thread();
 		
 	}
 	
