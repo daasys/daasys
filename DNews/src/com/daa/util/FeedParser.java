@@ -1,33 +1,23 @@
 package com.daa.util;
 
-import java.io.InputStream;
 import java.util.ArrayList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import android.content.Context;
-import android.content.res.AssetManager;
 import android.util.Log;
-
 import com.daa.model.News;
 
+/**
+ * Parse the xml response.
+ * @author DaaSys
+ *
+ */
 public class FeedParser {
 
-	public ArrayList<News> parse(Context context) {
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	public ArrayList<News> parse(Element root) {
 		ArrayList<News> newsList = new ArrayList<News>();
 		try {
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			AssetManager assets = context.getAssets();
-			InputStream stream = assets.open("News.xml");
-			Document dom = builder.parse(stream);
-			Element root = dom.getDocumentElement();
+			if(root == null) return null;
 			NodeList ndeList = root.getElementsByTagName("item");
 			int size = ndeList.getLength();
 			for (int index = 0; index < size; index++) {
@@ -38,7 +28,6 @@ public class FeedParser {
 				if(news != null) {
 					newsList.add(news);	
 				}
-
 			}
 			return newsList;
 		} catch (Exception e) {
@@ -48,6 +37,11 @@ public class FeedParser {
 
 	}
 
+	/**
+	 * Create news according to xml tag.
+	 * @param childNode
+	 * @return
+	 */
 	private News getChildNodes(NodeList childNode) {
 		int length = childNode.getLength();
 		News news = new News();
@@ -61,15 +55,18 @@ public class FeedParser {
 					news.setUrl(property.getFirstChild().getNodeValue());
 				} else if(propertyName.equalsIgnoreCase("DESCRIPTION")) {
 					news.setDescription(property.getFirstChild().getNodeValue());
-				} else if(propertyName.equalsIgnoreCase("")) {
-
-				}
+				} else if(propertyName.equalsIgnoreCase("guid")) {
+					news.setLink(property.getFirstChild().getNodeValue());
+				}  
 			}
 			return news;
 		} catch (Exception e) {
 			return null;
 		}
-
 	}
-
+	public void  getImage() {
+		Thread thread = new Thread();
+		
+	}
+	
 }
