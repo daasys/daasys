@@ -5,6 +5,7 @@ import java.util.TreeSet;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +64,7 @@ public class NewsAdapter extends BaseAdapter {
 
 	public void addItem(final Object item) {
 		mData.add(item);
+		notifyDataSetChanged();
 	}
 
 	public void addSeparatorItem(final String item) {
@@ -143,13 +145,23 @@ public class NewsAdapter extends BaseAdapter {
 
 		holder.textView = (TextView)viewToAdd.findViewById(R.id.TextViewName);
 		holder.imgBtnNews = (ImageView)viewToAdd.findViewById(R.id.ImageViewNews);
-		Drawable  d = context.getResources().getDrawable(Icons[position]);
-		Drawable thimbnail = Utility.getThumbnail(d);
-		holder.imgBtnNews.setImageDrawable(thimbnail);
+		//Drawable  d = context.getResources().getDrawable(Icons[position]);
+		Bitmap bitmap = news.getImgBitMap(); 
+
+		Bitmap thimbnail = Utility.getThumbnail(bitmap);
+
 		holder.textView.setText(news.getTitle());
 		holder.imgBtnNews.setOnClickListener(onClickListener);
+		holder.textView.setOnClickListener(onClickListener);
 		holder.imgBtnNews.setTag(news);
-		news.setUrl(Icons[position].toString());
+		//news.setUrl(Icons[position].toString());
+
+		if(thimbnail == null) {
+			holder.imgBtnNews.setImageResource(R.drawable.ic_launcher);
+		} else {
+			holder.imgBtnNews.setImageBitmap(thimbnail);
+		}
+		//holder.imgBtnNews.setImageBitmap(news.getImgBitMap());
 
 
 		if(view != null) {
@@ -181,56 +193,6 @@ public class NewsAdapter extends BaseAdapter {
 
 		}
 	};
-
-	// TODO this is temporary code and must be remove in future.
-//	private ArrayList<CategoryNews> initializeDummyNews() {
-//		ArrayList<CategoryNews> categoryList = new ArrayList<CategoryNews>();
-//		ArrayList<News> newsList = new ArrayList<News>();
-//
-//		News news = new News();
-//		news.setDescription("first news");
-//		news.setTitle("Title of first news.");
-//
-//		News news1 = new News();
-//		news1.setDescription("Second news");
-//		news1.setTitle("Title of Second news.");
-//
-//		News news2 = new News();
-//		news2.setDescription("Third news");
-//		news2.setTitle("Title of Third news.");
-//
-//		News news3 = new News();
-//		news3.setDescription("Fourth news");
-//		news3.setTitle("Title of Fourth news.");
-//
-//		News news4 = new News();
-//		news4.setDescription("Fifth news sports news");
-//		news4.setTitle("Title of Fifth news.");
-//
-//		ArrayList<News> newsListUSNews = new ArrayList<News>();
-//		newsListUSNews.add(news4);
-//		newsListUSNews.add(news3);
-//		newsListUSNews.add(news2);
-//		newsListUSNews.add(news1);
-//		newsListUSNews.add(news);
-//
-//		newsList.add(news4);
-//		newsList.add(news3);
-//
-//		CategoryNews category1 = new CategoryNews();
-//		category1.setCategory("Us News");
-//		category1.setNewsList(newsListUSNews);
-//
-//		CategoryNews category2 = new CategoryNews();
-//		category2.setCategory("Sports News");
-//		category2.setNewsList(newsList);
-//
-//		categoryList.add(category1);
-//		categoryList.add(category2);
-//
-//		return categoryList;
-//	}
-
 }
 
 

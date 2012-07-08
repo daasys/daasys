@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import org.w3c.dom.Element;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.daa.delegate.INewsDelegate;
 import com.daa.delegate.IServiceDelegate;
 import com.daa.service.DaaService;
+import com.daa.util.DataManager;
 import com.daa.util.FeedParser;
 
 /**
@@ -19,6 +21,7 @@ import com.daa.util.FeedParser;
  *
  */
 public class CategoryNews implements IServiceDelegate {
+
 	private static final String TAG = "CategoryNews";
 	private static final int FETCH_NEWS = 100;
 	private static final int FETCH_IMAGE = 200;
@@ -38,24 +41,26 @@ public class CategoryNews implements IServiceDelegate {
 			Log.e(TAG,"Error occured " + e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Fetch image of news.
 	 * @param detailLink
 	 */
-	public void fetchImage(String detailLink) {
+	public Bitmap fetchImage(String detailLink) {
 		try {
 			DaaService service = new DaaService();
 			service.setDelegate(this);
 			service.tag = FETCH_IMAGE;
 			// send web service request.
-			service.fetchImage(detailLink);
+			Bitmap bitMap = service.fetchImage(detailLink);
+			DataManager.bitMap = bitMap;
+			return bitMap;
 		} catch (Exception e) {
 			Log.e(TAG,"Error occured " + e.getMessage());
+			return null;
 		}
-		
 	}
-	
+
 
 	// getter and setter
 	public String getCategory() {
@@ -87,8 +92,6 @@ public class CategoryNews implements IServiceDelegate {
 		INewsDelegate delegate = (INewsDelegate)context;
 
 		delegate.newsFetchedSuccess(categoryNews);
-
-
 	}
 
 	@Override
@@ -99,7 +102,7 @@ public class CategoryNews implements IServiceDelegate {
 			INewsDelegate delegate = (INewsDelegate)context;
 			delegate.newsFetchedFail("Error in fetching data");
 		}
-		
+
 	}
 	@Override
 	public void onBeforeRequest(Element rootElement, int serviceCode) {

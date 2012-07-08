@@ -5,10 +5,23 @@
     android:background="@color/gray"
     android:orientation="vertical" >
 
+    <include
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_header" />
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
-        
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:background="@color/gray" />
+
+    <TextView
+        android:id="@+id/TextViewEmpty"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/gray"
+        android:text="Please wait.." />
 
 </LinearLayout>

@@ -1,5 +1,7 @@
 package com.daa.util;
 
+import android.graphics.Bitmap;
+
 import com.daa.model.News;
 
 /**
@@ -9,5 +11,6 @@ import com.daa.model.News;
  */
 public class DataManager {
 	public static News selectedNews;
+	public static Bitmap bitMap;
 
 }

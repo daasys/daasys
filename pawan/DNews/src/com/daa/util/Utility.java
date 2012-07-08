@@ -3,6 +3,9 @@ package com.daa.util;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+
+import android.app.ListActivity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -18,7 +21,7 @@ import android.util.Log;
 public class Utility {
 
 	private static final String TAG = "Utility";
-	
+
 	/**
 	 * Convert String to Bitmap.
 	 * @param nodeValue
@@ -33,11 +36,11 @@ public class Utility {
 			Bitmap bitMap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 			return getResizedBitmap(bitMap, 24, 24);
 		} catch (Exception e) {
-			Log.e(TAG, "getBitMap() Error occured " + e.getMessage());
+			Log.e(TAG + "getBitMap() ", "getBitMap() Error occured " + e.getMessage());
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Resize the bitmap into specified width and height. 
 	 * @param bm
@@ -69,16 +72,17 @@ public class Utility {
 	 * @param image
 	 * @return
 	 */
-	public  static  Drawable getThumbnail(Drawable image) {
+	public static Bitmap getThumbnail(Bitmap image) {
+		if(image == null) return null;
 		try {
-			Bitmap d = ((BitmapDrawable)image).getBitmap();
-			Bitmap bitmapOrig = Bitmap.createScaledBitmap(d, 64, 64, false);
-			return new BitmapDrawable(bitmapOrig);
+			//Bitmap d = ((BitmapDrawable)image).getBitmap();
+			Bitmap bitmapOrig = Bitmap.createScaledBitmap(image, 64, 48, false);
+			return  bitmapOrig;
 		} catch (Exception e) {
-			Log.e(TAG, "Error occured" + e.getMessage());
+			Log.e(TAG + "getThumbnail()", "Error occured " + e.getMessage());
 			return null;
 		}
-		
+
 	}
 
 	/**
@@ -94,12 +98,12 @@ public class Utility {
 			Bitmap bitmapOrig = Bitmap.createScaledBitmap(d, width, height, false);
 			return new BitmapDrawable(bitmapOrig);
 		} catch (Exception e) {
-			Log.e(TAG, "Error occured" + e.getMessage());
+			Log.e(TAG + "getThumbnail() ", "Error occured" + e.getMessage());
 			return null;
 		}
-		
+
 	}
-	
+
 	/**
 	 * Convert string to inputStream.
 	 * @param text
@@ -109,11 +113,14 @@ public class Utility {
 		try {
 			return new ByteArrayInputStream(text.getBytes("UTF-8"));
 		} catch(UnsupportedEncodingException e) {
-			Log.e(TAG, "Error occured" + e.getMessage());
+			Log.e(TAG + "stringToInputStream()  ", "Error occured" + e.getMessage());
 			return null;
 		} catch(Exception e) {
-			Log.e(TAG, "Error occured" + e.getMessage());
+			Log.e(TAG + "stringToInputStream()  ", "Error occured" + e.getMessage());
 			return null;
 		}
 	}
+	 
+
+	
 }

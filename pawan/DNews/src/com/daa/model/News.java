@@ -1,5 +1,7 @@
 package com.daa.model;
 
+import android.graphics.Bitmap;
+
 /**
  * DaaSys * @author DaaSys
  *
@@ -10,6 +12,7 @@ public class News {
 	private String url;
 	private String title;
 	private String link;
+	private Bitmap imgBitMap;
 	
 	public String getNews() {
 		return news;
@@ -40,6 +43,12 @@ public class News {
 	}
 	public void setLink(String link) {
 		this.link = link;
+	}
+	public Bitmap getImgBitMap() {
+		return imgBitMap;
+	}
+	public void setImgBitMap(Bitmap imgBitMap) {
+		this.imgBitMap = imgBitMap;
 	}
 	
 

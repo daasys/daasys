@@ -3,6 +3,7 @@
  */
 package com.daa.service;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 import com.daa.delegate.IServiceDelegate;
 import com.daa.util.AppConstants;
@@ -25,7 +26,7 @@ public class DaaService {
 		String baseUrl = AppConstants.baseUrl;
 		StringBuilder serviceUrl = new StringBuilder(baseUrl);
 		// construct service url.
-		serviceUrl.append("reuters/domesticNews");
+		serviceUrl.append("reuters/domesticNews"); // http://feeds.bbci.co.uk/news/world/rss.xml?edition=uk
 
 		// prepare the service object and set the values.
 		ServiceRequest  serviceRequest = new ServiceRequest();
@@ -44,10 +45,10 @@ public class DaaService {
 
 	}
 
-	public boolean fetchImage(String detailLink) {
-//		downloadHtmlfile file = new downloadHtmlfile();
-//		file.getImage(detailLink);
-		return true; 
+	public Bitmap fetchImage(String detailLink) {
+		downloadHtmlfile file = new downloadHtmlfile();
+		
+		return file.getImage(detailLink); 
 		// prepare the service object and set the values.
 //		ServiceRequest  serviceRequest = new ServiceRequest();
 //		serviceRequest.setUrl(detailLink);

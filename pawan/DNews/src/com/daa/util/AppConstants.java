@@ -8,7 +8,6 @@ package com.daa.util;
 public class AppConstants {
 	// Authentication.
 	public static final boolean REQUEST_POST = true;
-	
 	public static final boolean REQUEST_GET = false;
 	public static final String AUTHENTICATION_HEADER = "authorization";
 	// base url for request to news web service
