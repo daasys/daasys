@@ -1,37 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     >
+    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/TextViewHeading"
-        android:layout_width="fill_parent"
-        android:gravity="center_vertical"
-        android:textColor="@android:color/black"
-        android:text="Updated three hours ago"
-        android:layout_height="36dp"
-        android:background="@android:color/darker_gray" />
-
-    <ImageView
-        android:id="@+id/ImageViewShow"
-        android:layout_width="wrap_content"
-        android:src="@drawable/news1"
+    <include
+        android:id="@+id/header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/ImageViewRefresh" />
-
-    <ImageView
-        android:id="@+id/ImageViewRefresh"
-        android:layout_width="wrap_content"
-        android:src="@drawable/news1"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true" />
+        layout="@layout/layout_header" />
 
     <ListView
-        android:id="@id/android:list"
-        android:layout_below="@+id/TextViewHeading"
+        android:id="@android:id/list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:background="@color/gray"
+        android:choiceMode="multipleChoice"
+        android:layout_height="fill_parent" >
     </ListView>
 
-</RelativeLayout>
+</LinearLayout>
