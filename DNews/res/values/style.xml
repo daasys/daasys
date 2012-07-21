@@ -7,7 +7,9 @@
     </style>
 
     <style name="text_medium">
-        <item name="android:textSize">@dimen/twel</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>

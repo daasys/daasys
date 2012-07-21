@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_width="64dip"
+    android:layout_height="64dip"
     android:descendantFocusability="blocksDescendants"
     android:padding="@dimen/two"
     android:orientation="vertical" >
 
     <ImageView
+        android:contentDescription="@string/app_name"
         android:id="@+id/ImageViewNews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,11 +16,13 @@
     <TextView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/TextViewName"
-        android:layout_width="64dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:lines="1"
+        android:background="@android:color/black"
+        android:lines="3"
         android:paddingTop="@dimen/two"
-        android:gravity="center_vertical"
+        
+        android:gravity="top"
         style="@style/text_medium" />
 
 </LinearLayout>
